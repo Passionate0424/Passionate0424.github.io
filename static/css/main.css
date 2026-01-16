@@ -1,8 +1,8 @@
 @import "./styles.css";
 
 
-:root{
-    --h-title-color:#3948d2;
+:root {
+    --h-title-color: #3948d2;
 }
 
 .header {
@@ -41,14 +41,14 @@
     background: rgba(0, 0, 0, 0.5);
 }
 
-section header h2{
+section header h2 {
     font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
     color: var(--h-title-color);
     font-size: 2.3rem;
     line-height: 4rem;
 }
 
-section .main-body{
+section .main-body {
     font-size: 1.3rem;
     font-weight: 200;
     line-height: 2.4rem;
@@ -60,7 +60,7 @@ section .main-body{
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     max-height: calc(100vh - 120px);
     overflow-y: auto;
 }
@@ -152,7 +152,7 @@ section .main-body{
 #avatar {
     position: relative;
     height: 0;
-    top:min(-65px,max(-100px,calc(-1*100vw/12)));
+    top: min(-65px, max(-100px, calc(-1*100vw/12)));
     max-width: 55em;
     margin: 0 1.5rem 0 0;
     float: right;
@@ -160,7 +160,7 @@ section .main-body{
 }
 
 #avatar img {
-    height: max(130px,min(200px,calc(100vw/6)));
+    height: max(130px, min(200px, calc(100vw/6)));
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -170,4 +170,41 @@ section .main-body{
     }
 }
 
+.language-switcher {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
 
+.lang-btn {
+    padding: 6px 16px;
+    border: 2px solid var(--h-title-color);
+    background: transparent;
+    color: var(--h-title-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    background: rgba(57, 72, 210, 0.1);
+}
+
+.lang-btn.active {
+    background: var(--h-title-color);
+    color: #fff;
+}
+
+@media screen and (max-width: 576px) {
+    .language-switcher {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .lang-btn {
+        padding: 4px 12px;
+        font-size: 0.8rem;
+    }
+}

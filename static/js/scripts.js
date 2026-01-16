@@ -60,6 +60,8 @@ window.addEventListener('DOMContentLoaded', event => {
                 // Generate TOC for experience section
                 if (name === 'experience') {
                     generateTOC();
+                    // Initialize language switcher after content is loaded
+                    initLanguageSwitcher();
                 }
             })
             .catch(error => console.log(error));
@@ -72,8 +74,11 @@ window.addEventListener('DOMContentLoaded', event => {
 
         if (!experienceContent || !tocNav) return;
 
-        // Find only h3 headings (main project titles)
-        const headings = experienceContent.querySelectorAll('h3');
+        // Find all visible h3 headings directly (compatible with pure markdown)
+        const allH3 = experienceContent.querySelectorAll('h3');
+        const headings = Array.from(allH3).filter(heading => {
+            return window.getComputedStyle(heading).display !== 'none';
+        });
 
         if (headings.length === 0) {
             tocNav.innerHTML = '<p class="text-muted">暂无目录</p>';
@@ -145,6 +150,83 @@ window.addEventListener('DOMContentLoaded', event => {
                 link.classList.add('active');
             }
         });
+    }
+
+    // Language switcher functionality
+    function initLanguageSwitcher() {
+        const langButtons = document.querySelectorAll('.lang-btn');
+        langButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const lang = this.getAttribute('data-lang');
+                switchLanguage(lang);
+            });
+        });
+
+        // Initialize language (default to Chinese)
+        switchLanguage('zh');
+    }
+
+    function switchLanguage(lang) {
+        const experienceContent = document.getElementById('experience-md');
+        if (!experienceContent) return;
+
+        // Get all h3 headings
+        const headings = experienceContent.querySelectorAll('h3');
+
+        headings.forEach(heading => {
+            const headingText = heading.textContent.trim();
+            const isChinese = /[\u4e00-\u9fa5]/.test(headingText);
+
+            if (lang === 'zh') {
+                if (isChinese) {
+                    showContentBlock(heading);
+                } else {
+                    hideContentBlock(heading);
+                }
+            } else {
+                if (isChinese) {
+                    hideContentBlock(heading);
+                } else {
+                    showContentBlock(heading);
+                }
+            }
+        });
+
+        // Update button states
+        const langButtons = document.querySelectorAll('.lang-btn');
+        langButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-lang') === lang) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Update TOC title
+        const tocTitle = document.querySelector('.toc-title');
+        if (tocTitle) {
+            tocTitle.textContent = lang === 'zh' ? '目录' : 'Contents';
+        }
+
+        // Regenerate TOC with current language
+        generateTOC();
+    }
+
+    function showContentBlock(heading) {
+        heading.style.display = 'block';
+        let nextElement = heading.nextElementSibling;
+        while (nextElement && nextElement.tagName !== 'H3' && nextElement.tagName !== 'HR') {
+            nextElement.style.display = 'block';
+            nextElement = nextElement.nextElementSibling;
+        }
+    }
+
+    function hideContentBlock(heading) {
+        heading.style.display = 'none';
+        let nextElement = heading.nextElementSibling;
+        while (nextElement && nextElement.tagName !== 'H3' && nextElement.tagName !== 'HR') {
+            nextElement.style.display = 'none';
+            nextElement = nextElement.nextElementSibling;
+        }
     }
 
 }); 
