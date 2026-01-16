@@ -72,8 +72,8 @@ window.addEventListener('DOMContentLoaded', event => {
 
         if (!experienceContent || !tocNav) return;
 
-        // Find all h3 and h4 headings
-        const headings = experienceContent.querySelectorAll('h3, h4');
+        // Find only h3 headings (main project titles)
+        const headings = experienceContent.querySelectorAll('h3');
 
         if (headings.length === 0) {
             tocNav.innerHTML = '<p class="text-muted">暂无目录</p>';
@@ -81,33 +81,19 @@ window.addEventListener('DOMContentLoaded', event => {
         }
 
         let tocHTML = '<ul>';
-        let prevLevel = 3;
 
         headings.forEach((heading, index) => {
-            const level = parseInt(heading.tagName.charAt(1));
             const text = heading.textContent.trim();
             const id = 'heading-' + index;
 
             // Add id to heading
             heading.id = id;
 
-            // Adjust nesting level
-            if (level > prevLevel) {
-                tocHTML += '<ul>';
-            } else if (level < prevLevel) {
-                tocHTML += '</ul></li>';
-            } else {
-                tocHTML += '</li>';
-            }
-
-            prevLevel = level;
-
             // Add link to TOC
-            tocHTML += `<li><a href="#${id}" data-target="${id}">${text}</a>`;
+            tocHTML += `<li><a href="#${id}" data-target="${id}">${text}</a></li>`;
         });
 
-        // Close all open tags
-        tocHTML += '</li></ul>';
+        tocHTML += '</ul>';
 
         tocNav.innerHTML = tocHTML;
 
