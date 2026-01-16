@@ -1,20 +1,33 @@
-[![XX](https://img.shields.io/badge/XX-github-blue?logo=github)](https://github.com/XX)
+[![Passionate0424](https://img.shields.io/badge/Passionate0424-github-blue?logo=github)](https://github.com/Passionate0424)
 
-I'm currently pursuing a Master's degree in XX at the Department of XX, XX University, XX.
+I'm currently pursuing a bachelor's degree in Integrated Circuits at the School of Integrated Circuits, Nanjing University, Nanjing, China.
 
 #### Email  
-<code>XX@XX.XX</code>  
-<code>XX@XX.XX</code>
+<code>231880336@smail.nju.edu.cn</code>  
+<code>1852282973@qq.com</code>
 
 #### Education  
-**XX University**, Master of XX (XX – XX)  
-• GPA: XX/XX  
+**Nanjing University**, Bachelor of Integrated Circuits (2023 – 2027)  (Expected 2027)
+• GPA: 4.44/5.0  
 
-**XX University**, Exchange student <br>  
-• As a XX, represented my college as an outstanding student for a XX exchange program.  
-
-**XX University**, Honours Bachelor of XX (XX – XX)  
-• GPA: XX/XX (top XX%)  
+I will graduate with my bachelor's degree in 2027.
 
 #### Research Interests  
-XX, XX, XX, XX.
+FPGA-based Image Processing, AI Accelerator Design, VLSI Design, Embedded System Design and Application.
+
+---
+
+我目前正在南京大学集成电路学院攻读集成电路学士学位。
+
+#### 邮箱  
+<code>231880336@smail.nju.edu.cn</code>  
+<code>1852282973@qq.com</code>
+
+#### 教育背景  
+**南京大学**，集成电路学士 (2023 – 2027)  (预计2027年毕业)
+• GPA: 4.44/5.0  
+
+我将于2027年获得学士学位。
+
+#### 研究兴趣  
+FPGA图像处理、AI加速芯片设计、VLSI设计、嵌入式系统设计与应用。
