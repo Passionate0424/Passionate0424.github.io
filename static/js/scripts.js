@@ -214,7 +214,8 @@ window.addEventListener('DOMContentLoaded', event => {
     function showContentBlock(heading) {
         heading.style.display = 'block';
         let nextElement = heading.nextElementSibling;
-        while (nextElement && nextElement.tagName !== 'H3' && nextElement.tagName !== 'HR') {
+        // 遍历到下一个 h3 为止，包括中间的 hr
+        while (nextElement && nextElement.tagName !== 'H3') {
             nextElement.style.display = 'block';
             nextElement = nextElement.nextElementSibling;
         }
@@ -223,7 +224,8 @@ window.addEventListener('DOMContentLoaded', event => {
     function hideContentBlock(heading) {
         heading.style.display = 'none';
         let nextElement = heading.nextElementSibling;
-        while (nextElement && nextElement.tagName !== 'H3' && nextElement.tagName !== 'HR') {
+        // 遍历到下一个 h3 为止，包括中间的 hr 也一并隐藏
+        while (nextElement && nextElement.tagName !== 'H3') {
             nextElement.style.display = 'none';
             nextElement = nextElement.nextElementSibling;
         }
