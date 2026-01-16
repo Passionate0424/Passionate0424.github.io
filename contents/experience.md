@@ -25,7 +25,7 @@ Responsible for team member task assignment, preliminary research, design of min
 
 ---
 
-### **2025年全国大学生嵌入式芯片与系统设计竞赛（应用赛道） | 国家二等奖 | 团队队长**
+### **2025年全国大学生嵌入式芯片与系统设计竞赛（应用赛道） —— 基于PSoC6的多模健康监测台灯系统 | 国家二等奖 | 团队队长**
 **2025年03月 – 2025年08月**
 
 负责团队成员任务安排、项目方案构思设计、代码实现、元器件选型、作品集成与调试。
@@ -43,7 +43,7 @@ Responsible for team member task assignment, preliminary research, design of min
 
 ---
 
-### **2025 National Undergraduate Embedded Chip and System Design Competition (Application Track) | National Second Prize | Team Leader**
+### **2025 National Undergraduate Embedded Chip and System Design Competition (Application Track) — PSoC6-Based Multi-Modal Health Monitoring Desk Lamp System | National Second Prize | Team Leader**
 **March 2025 – August 2025**
 
 Responsible for team member task assignment, project scheme conceptual design, code implementation, component selection, and work integration and debugging.
@@ -61,7 +61,7 @@ Responsible for team member task assignment, project scheme conceptual design, c
 
 ---
 
-### **2025年全国大学生FPGA创新设计竞赛 | 团队队长**
+### **2025年全国大学生FPGA创新设计竞赛 —— 基于易灵思Ti60F225的内窥镜ISP设计 | 团队队长**
 **2025年06月 – 2025年10月**
 
 基于 **Efinix (易灵思) Ti60F225** 平台，针对医疗内窥镜弱光、高噪声、雾气干扰及色彩失真等痛点，设计并实现了一套高实时性、低延迟的 **ISP (图像信号处理)** 系统。
@@ -80,7 +80,7 @@ Responsible for team member task assignment, project scheme conceptual design, c
 
 ---
 
-### **2025 National Undergraduate FPGA Innovation Design Competition | Team Leader**
+### **2025 National Undergraduate FPGA Innovation Design Competition — Efinix Ti60F225-Based Endoscope ISP Design | Team Leader**
 **June 2025 – October 2025**
 
 Based on the **Efinix Ti60F225** platform, designed and implemented a high real-time, low-latency **ISP (Image Signal Processing)** system addressing pain points such as low light, high noise, fog interference, and color distortion in medical endoscopes.
