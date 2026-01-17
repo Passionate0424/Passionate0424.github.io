@@ -1,3 +1,5 @@
+<!-- lang:en -->
+
 [![Passionate0424](https://img.shields.io/badge/Passionate0424-github-blue?logo=github)](https://github.com/Passionate0424)
 
 I'm currently pursuing a bachelor's degree in Integrated Circuits at the School of Integrated Circuits, Nanjing University, Nanjing, China.
@@ -15,7 +17,9 @@ I will graduate with my bachelor's degree in 2027.
 #### Research Interests  
 FPGA-based Image Processing, AI Accelerator Design, VLSI Design, Embedded System Design and Application.
 
----
+<!-- lang:zh -->
+
+[![Passionate0424](https://img.shields.io/badge/Passionate0424-github-blue?logo=github)](https://github.com/Passionate0424)
 
 我目前正在南京大学集成电路学院攻读集成电路学士学位。
 

@@ -74,7 +74,7 @@
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!-- Core JS-->
-    <script type="text/javascript" src="static/js/scripts.js"></script>
+    <script type="text/javascript" src="static/js/scripts.js?v=2"></script>
     <script type="text/javascript" src="static/js/js-yaml.min.js"></script>
 
 </head>
@@ -105,6 +105,11 @@
                         <a class="nav-link me-lg-3" href="#publications">PUBLICATIONS</a>
                     </li>
                 </ul>
+                <!-- 全局语言切换器 -->
+                <div class="language-switcher navbar-lang-switcher">
+                    <button class="lang-btn active" data-lang="zh">中文</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -154,12 +159,8 @@
     <!-- Experience -->
     <section class="bg-gradient-primary-to-secondary-dark mt5 md5" id="experience">
         <div class="container px-5">
-            <header class="d-flex justify-content-between align-items-center">
+            <header>
                 <h2 id="experience-subtitle"><i class="bi bi-briefcase-fill"></i> EXPERIENCE </h2>
-                <div class="language-switcher">
-                    <button class="lang-btn active" data-lang="zh">中文</button>
-                    <button class="lang-btn" data-lang="en">English</button>
-                </div>
             </header>
             <div class="row">
                 <div class="col-lg-3">
@@ -200,6 +201,7 @@
             </div>
         </div>
     </footer>
+
 
 </body>
 

@@ -1,3 +1,4 @@
+<!-- lang:zh -->
 
 ### **国家级大创《谱写未来——小型化拉曼光谱仪用于实时分子检测》 负责人**  
 **2024年11月 – 2025年11月**  
@@ -9,19 +10,6 @@
 - 调研探索设计《内置参考光路的光纤式拉曼光谱仪系统设计》方案，小型化同时保持极高检测准确度，申请发明专利（2025年6月公开）。
 - COMSOL中搭建了器件模型，进行仿真性能分析与优化，设计了基于等离激元增强和光镊效应的片上拉曼增强器件，提高纳米级微粒的检测灵敏度，具有较低检出限，并具有一定尺寸分选作用。  
 - 搭建了包含小波去噪、自适应迭代重加权惩罚最小二乘法等光谱处理matlab算法平台。
-
----
-
-### **National Undergraduate Training Program for Innovation and Entrepreneurship - "Composing the Future: Miniaturized Raman Spectrometer for Real-time Molecular Detection" - Project Leader**
-**November 2024 – November 2025**
-
-Responsible for team member task assignment, preliminary research, design of miniaturized high-accuracy spectrometer schemes, ZEMAX simulation design and optimization of dual-channel spectrometers, COMSOL device simulation design and optimization, and optical path experimental setup.
-
-#### Key Contributions:
-- Successfully simulated dual-channel spectrometer optical path design using ZEMAX, verifying the feasibility of the scheme design.
-- Investigated and designed the "Fiber-optic Raman Spectrometer System with Built-in Reference Optical Path" scheme, achieving miniaturization while maintaining extremely high detection accuracy. Applied for a patent (to be published in June 2025).
-- Built device models in COMSOL for simulation performance analysis and optimization. Designed on-chip Raman enhancement devices based on plasmon enhancement and optical tweezers effects, improving detection sensitivity for nanoscale particles with lower detection limits and certain size sorting capabilities.
-- Built a spectral processing MATLAB algorithm platform including wavelet denoising and adaptive iteratively reweighted penalized least squares methods.
 
 ---
 
@@ -43,24 +31,6 @@ Responsible for team member task assignment, preliminary research, design of min
 
 ---
 
-### **2025 National Undergraduate Embedded Chip and System Design Competition (Application Track) — PSoC6-Based Multi-Modal Health Monitoring Desk Lamp System | National Second Prize | Team Leader**
-**March 2025 – August 2025**
-
-Responsible for team member task assignment, project scheme conceptual design, code implementation, component selection, and work integration and debugging.
-
-#### Key Contributions:
-- Responsible for hardware integration and driver development of multi-modal perception systems. Integrated **ENS160 (air quality), BMP280 (air pressure), BH1750 (light intensity), SHT31 (temperature and humidity), R60ABD1 (millimeter-wave radar)** sensor arrays through I2C/UART buses to build a comprehensive environmental perception system.
-- Independently developed RT-Thread ST7789 driver software package: Addressing the insufficient functionality of existing community drivers, independently developed and packaged driver software packages for **R60ABD1 millimeter-wave radar** and **ST7789V display (SPI adapter)**. Filled the gap in existing ecosystem ST7789 drivers that did not support batch screen refresh interfaces in LVGL graphics interfaces, achieving non-contact heart rate and respiration monitoring and efficient graphics display, and contributed the software package to the RT-Thread open source community (https://github.com/RT-Thread/packages/tree/master/peripherals/ST7789_SPI) (https://github.com/Passionate0424/RT-Thread-ST7789-Package).
-- Built software architecture based on **RT-Thread** real-time operating system, designed UART communication protocol between **PSoC6** main controller and **SG2002** computing board to ensure efficient synchronization of multi-source heterogeneous data.
-- Deep low-level optimization: During development, located and fixed the **HardFault** issue caused by UART interrupt configuration errors in PSoC6 official BSP, submitted PR which was merged into official repository, significantly improving system long-term stability (https://github.com/RT-Thread/rt-thread/pull/10225、https://github.com/RT-Thread-Studio/sdk-bsp-cy8c624-infineon-evaluationkit/pull/13、https://github.com/RT-Thread/rt-thread/pull/10260、https://github.com/RT-Thread/rt-thread/pull/10231).
-- Deployed **lightweight FCNN** and **LSTM** neural networks on resource-constrained MCU end (PSoC6). Used **TensorFlow** for training and **nnom** tool for Int8 quantization deployment, achieving environmental scoring (inference time **891μs**) and temperature-humidity time series prediction (inference time **1.7ms**), greatly reducing computing power consumption.
-- Deployed **YOLOv5** and **YOLOv8-pose** models on Linux end (SG2002), achieving hand motion capture and human pose recognition with accuracy meeting real-time interaction requirements.
-- Designed **PID closed-loop control algorithm** combined with **Kalman filter** to process visual coordinate data, driving 2D servo gimbal to achieve high-precision automatic tracking of "light following book movement".
-- Integrated **Deepseek large model** API to implement natural language environmental assessment suggestions, and based on **ThingsPanel** IoT platform and **RTMP/SRS** streaming media service, implemented remote MQTT cloud upload of data and real-time video stream monitoring.
-- **Project Open Source Repository**: `https://github.com/Passionate0424/PSoC6_Lamp`
-
----
-
 ### **2025年全国大学生FPGA创新设计竞赛 —— 基于易灵思Ti60F225的内窥镜ISP设计 | 团队队长**
 **2025年06月 – 2025年10月**
 
@@ -77,25 +47,6 @@ Responsible for team member task assignment, project scheme conceptual design, c
     - **资源与算力优化**：利用比较器链替代除法器进行坐标计算，使用移位替代乘除法，显著降低硬件资源消耗。
     - **底层网表级调试**：在调试过程中，深入分析 **综合网表 (Synthesized Netlist)**，成功定位了 Efinity 综合器在相似逻辑路径合并上的 Bug (导致并行索引信号错误连接)，展现了扎实的底层 Debug 能力；同时利用比较器链替代除法器进行坐标计算，显著优化了逻辑资源。
 - **可视化设计与系统优化集成**：通过移位替代乘除法优化硬件消耗，确保了系统在小型化硬件约束下的稳定运行。配合 STM32 上位机与 LVGL GUI，并设计了UART指令，通过图形界面实现算法模块的开关和参数调节，实现了对胃肠镜、腹腔镜等不同设备成像需求的动态适配。
-
----
-
-### **2025 National Undergraduate FPGA Innovation Design Competition — Efinix Ti60F225-Based Endoscope ISP Design | Team Leader**
-**June 2025 – October 2025**
-
-Based on the **Efinix Ti60F225** platform, designed and implemented a high real-time, low-latency **ISP (Image Signal Processing)** system addressing pain points such as low light, high noise, fog interference, and color distortion in medical endoscopes.
-
-Responsible for top-level architecture design, reference code research, CLAHE algorithm design, module interconnection, STM32 graphical interface design, UART communication module and instruction design, and team member task assignment.
-
-#### Key Contributions:
-- **Full Pipeline ISP Architecture Design**: Designed full-link RTL design from Bayer Raw data input to YUV output. The system integrated core modules including **BNR (Bayer Noise Reduction)**, **DPC (Defective Pixel Correction)**, **AWB (Auto White Balance)**, **AE (Auto Exposure)**, **CCM (Color Correction Matrix)**, **Gamma Correction**, **CLAHE**, **Defogging**, supporting real-time processing at **1280×720** resolution with full system processing latency as low as **1.02μs**.
-- **Complex Algorithm Hardware Implementation and Resource Optimization**:
-    - **CLAHE Algorithm Hardware Acceleration and Architecture Innovation** \[[GitHub Open Source](https://github.com/Passionate0424/CLAHE_verilog) | [Technical Blog](https://blog.csdn.net/qq_60796105/article/details/156876723?fromshare=blogdetail&sharetype=blogdetail&sharerId=156876723&sharerefer=PC&sharesource=&sharefrom=from_link)\]
-    - **Parallel Pipeline Architecture**: Designed **16 Tiles (4×4)** block parallel processing architecture, utilizing **32 pseudo dual-port RAMs** to build ping-pong buffers, achieving bubble-free pipeline for histogram statistics and pixel mapping.
-    - **Pipeline Hazard Elimination**: For **RAW (Read-After-Write)** hazards in histogram statistics, innovatively designed **bypass logic** and data lookahead mechanism, solving continuous pixel accumulation conflicts without pausing the pipeline.
-    - **Resource and Computing Power Optimization**: Used comparator chains to replace dividers for coordinate calculation, used bit shifts to replace multiplication/division, significantly reducing hardware resource consumption.
-    - **Low-level Netlist-level Debugging**: During debugging, deeply analyzed **synthesized netlist**, successfully located Efinity synthesizer bug in similar logic path merging (causing incorrect connection of parallel index signals), demonstrating solid low-level debugging capabilities; meanwhile used comparator chains to replace dividers for coordinate calculation, significantly optimizing logic resources.
-- **Visualization Design and System Optimization Integration**: Optimized hardware consumption by replacing multiplication/division with bit shifts, ensuring stable system operation under miniaturized hardware constraints. Cooperated with STM32 host computer and LVGL GUI, designed UART instructions, achieving dynamic adaptation to imaging requirements of different equipment such as gastroscopes and laparoscopes through graphical interface for algorithm module switching and parameter adjustment.
 
 ---
 
@@ -125,6 +76,56 @@ Responsible for top-level architecture design, reference code research, CLAHE al
 | **BRAM 资源消耗** | 66 Tiles | **18 Tiles** | **节省 72.7%** |
 | **LUT 逻辑资源** | 8,014 | **3,738** | **节省 53.4%** |
 
+<!-- lang:en -->
+
+### **National Undergraduate Training Program for Innovation and Entrepreneurship - "Composing the Future: Miniaturized Raman Spectrometer for Real-time Molecular Detection" - Project Leader**
+**November 2024 – November 2025**
+
+Responsible for team member task assignment, preliminary research, design of miniaturized high-accuracy spectrometer schemes, ZEMAX simulation design and optimization of dual-channel spectrometers, COMSOL device simulation design and optimization, and optical path experimental setup.
+
+#### Key Contributions:
+- Successfully simulated dual-channel spectrometer optical path design using ZEMAX, verifying the feasibility of the scheme design.
+- Investigated and designed the "Fiber-optic Raman Spectrometer System with Built-in Reference Optical Path" scheme, achieving miniaturization while maintaining extremely high detection accuracy. Applied for a patent (to be published in June 2025).
+- Built device models in COMSOL for simulation performance analysis and optimization. Designed on-chip Raman enhancement devices based on plasmon enhancement and optical tweezers effects, improving detection sensitivity for nanoscale particles with lower detection limits and certain size sorting capabilities.
+- Built a spectral processing MATLAB algorithm platform including wavelet denoising and adaptive iteratively reweighted penalized least squares methods.
+
+---
+
+### **2025 National Undergraduate Embedded Chip and System Design Competition (Application Track) — PSoC6-Based Multi-Modal Health Monitoring Desk Lamp System | National Second Prize | Team Leader**
+**March 2025 – August 2025**
+
+Responsible for team member task assignment, project scheme conceptual design, code implementation, component selection, and work integration and debugging.
+
+#### Key Contributions:
+- Responsible for hardware integration and driver development of multi-modal perception systems. Integrated **ENS160 (air quality), BMP280 (air pressure), BH1750 (light intensity), SHT31 (temperature and humidity), R60ABD1 (millimeter-wave radar)** sensor arrays through I2C/UART buses to build a comprehensive environmental perception system.
+- Independently developed RT-Thread ST7789 driver software package: Addressing the insufficient functionality of existing community drivers, independently developed and packaged driver software packages for **R60ABD1 millimeter-wave radar** and **ST7789V display (SPI adapter)**. Filled the gap in existing ecosystem ST7789 drivers that did not support batch screen refresh interfaces in LVGL graphics interfaces, achieving non-contact heart rate and respiration monitoring and efficient graphics display, and contributed the software package to the RT-Thread open source community (https://github.com/RT-Thread/packages/tree/master/peripherals/ST7789_SPI) (https://github.com/Passionate0424/RT-Thread-ST7789-Package).
+- Built software architecture based on **RT-Thread** real-time operating system, designed UART communication protocol between **PSoC6** main controller and **SG2002** computing board to ensure efficient synchronization of multi-source heterogeneous data.
+- Deep low-level optimization: During development, located and fixed the **HardFault** issue caused by UART interrupt configuration errors in PSoC6 official BSP, submitted PR which was merged into official repository, significantly improving system long-term stability (https://github.com/RT-Thread/rt-thread/pull/10225、https://github.com/RT-Thread-Studio/sdk-bsp-cy8c624-infineon-evaluationkit/pull/13、https://github.com/RT-Thread/rt-thread/pull/10260、https://github.com/RT-Thread/rt-thread/pull/10231).
+- Deployed **lightweight FCNN** and **LSTM** neural networks on resource-constrained MCU end (PSoC6). Used **TensorFlow** for training and **nnom** tool for Int8 quantization deployment, achieving environmental scoring (inference time **891μs**) and temperature-humidity time series prediction (inference time **1.7ms**), greatly reducing computing power consumption.
+- Deployed **YOLOv5** and **YOLOv8-pose** models on Linux end (SG2002), achieving hand motion capture and human pose recognition with accuracy meeting real-time interaction requirements.
+- Designed **PID closed-loop control algorithm** combined with **Kalman filter** to process visual coordinate data, driving 2D servo gimbal to achieve high-precision automatic tracking of "light following book movement".
+- Integrated **Deepseek large model** API to implement natural language environmental assessment suggestions, and based on **ThingsPanel** IoT platform and **RTMP/SRS** streaming media service, implemented remote MQTT cloud upload of data and real-time video stream monitoring.
+- **Project Open Source Repository**: `https://github.com/Passionate0424/PSoC6_Lamp`
+
+---
+
+### **2025 National Undergraduate FPGA Innovation Design Competition — Efinix Ti60F225-Based Endoscope ISP Design | Team Leader**
+**June 2025 – October 2025**
+
+Based on the **Efinix Ti60F225** platform, designed and implemented a high real-time, low-latency **ISP (Image Signal Processing)** system addressing pain points such as low light, high noise, fog interference, and color distortion in medical endoscopes.
+
+Responsible for top-level architecture design, reference code research, CLAHE algorithm design, module interconnection, STM32 graphical interface design, UART communication module and instruction design, and team member task assignment.
+
+#### Key Contributions:
+- **Full Pipeline ISP Architecture Design**: Designed full-link RTL design from Bayer Raw data input to YUV output. The system integrated core modules including **BNR (Bayer Noise Reduction)**, **DPC (Defective Pixel Correction)**, **AWB (Auto White Balance)**, **AE (Auto Exposure)**, **CCM (Color Correction Matrix)**, **Gamma Correction**, **CLAHE**, **Defogging**, supporting real-time processing at **1280×720** resolution with full system processing latency as low as **1.02μs**.
+- **Complex Algorithm Hardware Implementation and Resource Optimization**:
+    - **CLAHE Algorithm Hardware Acceleration and Architecture Innovation** \[[GitHub Open Source](https://github.com/Passionate0424/CLAHE_verilog) | [Technical Blog](https://blog.csdn.net/qq_60796105/article/details/156876723?fromshare=blogdetail&sharetype=blogdetail&sharerId=156876723&sharerefer=PC&sharesource=&sharefrom=from_link)\]
+    - **Parallel Pipeline Architecture**: Designed **16 Tiles (4×4)** block parallel processing architecture, utilizing **32 pseudo dual-port RAMs** to build ping-pong buffers, achieving bubble-free pipeline for histogram statistics and pixel mapping.
+    - **Pipeline Hazard Elimination**: For **RAW (Read-After-Write)** hazards in histogram statistics, innovatively designed **bypass logic** and data lookahead mechanism, solving continuous pixel accumulation conflicts without pausing the pipeline.
+    - **Resource and Computing Power Optimization**: Used comparator chains to replace dividers for coordinate calculation, used bit shifts to replace multiplication/division, significantly reducing hardware resource consumption.
+    - **Low-level Netlist-level Debugging**: During debugging, deeply analyzed **synthesized netlist**, successfully located Efinity synthesizer bug in similar logic path merging (causing incorrect connection of parallel index signals), demonstrating solid low-level debugging capabilities; meanwhile used comparator chains to replace dividers for coordinate calculation, significantly optimizing logic resources.
+- **Visualization Design and System Optimization Integration**: Optimized hardware consumption by replacing multiplication/division with bit shifts, ensuring stable system operation under miniaturized hardware constraints. Cooperated with STM32 host computer and LVGL GUI, designed UART instructions, achieving dynamic adaptation to imaging requirements of different equipment such as gastroscopes and laparoscopes through graphical interface for algorithm module switching and parameter adjustment.
+
 ---
 
 ### **Deep Optimization of CLAHE Hardware Architecture Based on VLSI DSP Theory**
@@ -152,3 +153,5 @@ Addressing issues of dramatically increased resource consumption and timing conv
 | **Critical Path Delay** | 35.5 ns (185 Logic Levels) | **5.30 ns (6 Logic Levels)** | **Timing Violation Eliminated (WNS +4.7ns)** |
 | **BRAM Resource Consumption** | 66 Tiles | **18 Tiles** | **72.7% Saved** |
 | **LUT Logic Resources** | 8,014 | **3,738** | **53.4% Saved** |
+
+<!-- lang:zh -->

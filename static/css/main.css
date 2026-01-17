@@ -490,3 +490,68 @@ html {
     background: rgba(var(--h-title-color-rgb), 0.2);
     color: var(--h-title-color);
 }
+
+
+/* ==========================================
+   全局语言切换器
+   ========================================== */
+
+.language-switcher {
+    display: flex;
+    gap: 8px;
+}
+
+.navbar-lang-switcher {
+    margin-left: 16px;
+}
+
+.lang-btn {
+    padding: 6px 16px;
+    border: 1px solid rgba(var(--h-title-color-rgb), 0.2);
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #666;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.lang-btn:hover {
+    color: var(--h-title-color);
+    border-color: var(--h-title-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.lang-btn.active {
+    background: linear-gradient(135deg, var(--h-title-color), var(--accent-purple));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(var(--h-title-color-rgb), 0.3);
+}
+
+
+/* ==========================================
+   语言内容切换
+   ========================================== */
+
+/* 默认隐藏英文内容 */
+.lang-en {
+    display: none;
+}
+
+.lang-zh {
+    display: block;
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 991px) {
+    .navbar-lang-switcher {
+        margin-left: 0;
+        margin-top: 16px;
+        justify-content: center;
+    }
+}

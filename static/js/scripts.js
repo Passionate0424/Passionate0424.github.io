@@ -2,6 +2,8 @@ const content_dir = 'contents/'
 const config_file = 'config.yml'
 const section_names = ['home', 'awards', 'experience', 'publications'];
 
+// 全局语言状态
+let currentLang = 'zh';
 
 window.addEventListener('DOMContentLoaded', event => {
 
@@ -28,7 +30,7 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 
-    // Yaml
+    // Yaml config
     fetch(content_dir + config_file)
         .then(response => response.text())
         .then(text => {
@@ -45,27 +47,107 @@ window.addEventListener('DOMContentLoaded', event => {
         .catch(error => console.log(error));
 
 
-    // Marked
-    marked.use({ mangle: false, headerIds: false })
+    // Marked - 加载 Markdown 内容
+    // 配置 marked 保留原始 HTML 标签（用于语言切换的 div class）
+    marked.setOptions({
+        mangle: false,
+        headerIds: false
+    });
+
+    let loadedSections = 0;
+    const totalSections = section_names.length;
+
     section_names.forEach((name, idx) => {
-        fetch(content_dir + name + '.md')
+        // 添加时间戳防止缓存
+        fetch(content_dir + name + '.md?t=' + new Date().getTime())
             .then(response => response.text())
             .then(markdown => {
-                const html = marked.parse(markdown);
+                let html = '';
+                // 检测是否存在语言标记 <!-- lang:zh --> 或 <!-- lang:en -->
+                const hasLangMarkers = /<!--\s*lang:(zh|en)\s*-->/i.test(markdown);
+
+                if (hasLangMarkers) {
+                    const languages = ['zh', 'en'];
+                    languages.forEach(lang => {
+                        // 匹配标记之后，下一个标记或文件末尾之前的内容
+                        const regex = new RegExp(`<!--\\s*lang:${lang}\\s*-->([\\s\\S]*?)(?=<!--\\s*lang:|$)`, 'i');
+                        const match = markdown.match(regex);
+                        if (match && match[1]) {
+                            // 解析 Markdown 并包裹在对应的语言 div 中
+                            html += `<div class="lang-${lang}">${marked.parse(match[1])}</div>`;
+                        }
+                    });
+                } else {
+                    // 没有标记，按普通 Markdown 解析
+                    html = marked.parse(markdown);
+                }
                 document.getElementById(name + '-md').innerHTML = html;
             }).then(() => {
                 // MathJax
                 MathJax.typeset();
 
+                loadedSections++;
+
+                // 当所有内容加载完成后，初始化语言切换
+                if (loadedSections === totalSections) {
+                    initGlobalLanguageSwitcher();
+                    // 应用默认语言
+                    switchLanguage(currentLang);
+                }
+
                 // Generate TOC for experience section
                 if (name === 'experience') {
                     generateTOC();
-                    // Initialize language switcher after content is loaded
-                    initLanguageSwitcher();
                 }
             })
             .catch(error => console.log(error));
     })
+
+    // 全局语言切换器初始化
+    function initGlobalLanguageSwitcher() {
+        const langButtons = document.querySelectorAll('.lang-btn');
+        langButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const lang = this.getAttribute('data-lang');
+                switchLanguage(lang);
+            });
+        });
+    }
+
+    // 切换语言
+    function switchLanguage(lang) {
+        currentLang = lang;
+
+        // 切换所有 .lang-zh 和 .lang-en 元素
+        const zhElements = document.querySelectorAll('.lang-zh');
+        const enElements = document.querySelectorAll('.lang-en');
+
+        if (lang === 'zh') {
+            zhElements.forEach(el => el.style.display = 'block');
+            enElements.forEach(el => el.style.display = 'none');
+        } else {
+            zhElements.forEach(el => el.style.display = 'none');
+            enElements.forEach(el => el.style.display = 'block');
+        }
+
+        // 更新按钮状态
+        const langButtons = document.querySelectorAll('.lang-btn');
+        langButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-lang') === lang) {
+                btn.classList.add('active');
+            }
+        });
+
+        // 更新 TOC 标题
+        const tocTitle = document.querySelector('.toc-title');
+        if (tocTitle) {
+            tocTitle.textContent = lang === 'zh' ? '目录' : 'Contents';
+        }
+
+        // 重新生成 TOC
+        generateTOC();
+    }
 
     // Generate Table of Contents
     function generateTOC() {
@@ -74,9 +156,15 @@ window.addEventListener('DOMContentLoaded', event => {
 
         if (!experienceContent || !tocNav) return;
 
-        // Find all visible h3 headings directly (compatible with pure markdown)
+        // 找到当前语言下可见的 h3 标题
         const allH3 = experienceContent.querySelectorAll('h3');
         const headings = Array.from(allH3).filter(heading => {
+            // 检查标题是否在可见的语言块中
+            const parentLangBlock = heading.closest('.lang-zh, .lang-en');
+            if (parentLangBlock) {
+                return window.getComputedStyle(parentLangBlock).display !== 'none';
+            }
+            // 如果不在语言块中，检查自身是否可见
             return window.getComputedStyle(heading).display !== 'none';
         });
 
@@ -150,85 +238,6 @@ window.addEventListener('DOMContentLoaded', event => {
                 link.classList.add('active');
             }
         });
-    }
-
-    // Language switcher functionality
-    function initLanguageSwitcher() {
-        const langButtons = document.querySelectorAll('.lang-btn');
-        langButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const lang = this.getAttribute('data-lang');
-                switchLanguage(lang);
-            });
-        });
-
-        // Initialize language (default to Chinese)
-        switchLanguage('zh');
-    }
-
-    function switchLanguage(lang) {
-        const experienceContent = document.getElementById('experience-md');
-        if (!experienceContent) return;
-
-        // Get all h3 headings
-        const headings = experienceContent.querySelectorAll('h3');
-
-        headings.forEach(heading => {
-            const headingText = heading.textContent.trim();
-            const isChinese = /[\u4e00-\u9fa5]/.test(headingText);
-
-            if (lang === 'zh') {
-                if (isChinese) {
-                    showContentBlock(heading);
-                } else {
-                    hideContentBlock(heading);
-                }
-            } else {
-                if (isChinese) {
-                    hideContentBlock(heading);
-                } else {
-                    showContentBlock(heading);
-                }
-            }
-        });
-
-        // Update button states
-        const langButtons = document.querySelectorAll('.lang-btn');
-        langButtons.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.getAttribute('data-lang') === lang) {
-                btn.classList.add('active');
-            }
-        });
-
-        // Update TOC title
-        const tocTitle = document.querySelector('.toc-title');
-        if (tocTitle) {
-            tocTitle.textContent = lang === 'zh' ? '目录' : 'Contents';
-        }
-
-        // Regenerate TOC with current language
-        generateTOC();
-    }
-
-    function showContentBlock(heading) {
-        heading.style.display = 'block';
-        let nextElement = heading.nextElementSibling;
-        // 遍历到下一个 h3 为止，包括中间的 hr
-        while (nextElement && nextElement.tagName !== 'H3') {
-            nextElement.style.display = 'block';
-            nextElement = nextElement.nextElementSibling;
-        }
-    }
-
-    function hideContentBlock(heading) {
-        heading.style.display = 'none';
-        let nextElement = heading.nextElementSibling;
-        // 遍历到下一个 h3 为止，包括中间的 hr 也一并隐藏
-        while (nextElement && nextElement.tagName !== 'H3') {
-            nextElement.style.display = 'none';
-            nextElement = nextElement.nextElementSibling;
-        }
     }
 
 }); 
