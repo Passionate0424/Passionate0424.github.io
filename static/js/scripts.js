@@ -7,6 +7,191 @@ let currentLang = 'zh';
 
 window.addEventListener('DOMContentLoaded', event => {
 
+    // ==========================================
+    // 滚动增强功能
+    // ==========================================
+
+    // 导航栏滚动变色
+    const header = document.querySelector('.header');
+    const scrollThreshold = 50;
+
+    function updateHeaderOnScroll() {
+        if (window.scrollY > scrollThreshold) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+
+    window.addEventListener('scroll', updateHeaderOnScroll);
+    updateHeaderOnScroll(); // 初始化状态
+
+    // ==========================================
+    // 回到顶部按钮
+    // ==========================================
+
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    if (backToTopBtn) {
+        // 显示/隐藏按钮
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // 点击回到顶部
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // ==========================================
+    // 暗色模式切换
+    // ==========================================
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    // 检查本地存储的主题偏好
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        html.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // 如果系统偏好暗色模式
+        html.setAttribute('data-theme', 'dark');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+
+    // ==========================================
+    // 打字机效果
+    // ==========================================
+
+    function typeWriter(element, text, speed = 80) {
+        let i = 0;
+        element.textContent = '';
+
+        function type() {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else {
+                // 打字完成后移除光标动画
+                setTimeout(() => {
+                    element.classList.add('typing-done');
+                }, 1000);
+            }
+        }
+
+        type();
+    }
+
+    // ==========================================
+    // 粒子背景
+    // ==========================================
+
+    function createParticles() {
+        const container = document.getElementById('particles-bg');
+        if (!container) return;
+
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+
+            // 随机初始位置
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+
+            // 随机大小
+            const size = Math.random() * 4 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+
+            // 随机动画持续时间和延迟
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particle.style.animationDelay = (Math.random() * 10) + 's';
+
+            // 随机透明度
+            particle.style.opacity = Math.random() * 0.5 + 0.3;
+
+            container.appendChild(particle);
+        }
+    }
+
+    createParticles();
+
+    // 滚动触发动画 (Intersection Observer)
+    const scrollAnimateElements = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale');
+
+    // 将观察器声明在外部以便后续使用
+    let animateObserver = null;
+
+    if ('IntersectionObserver' in window) {
+        animateObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                } else {
+                    // 离开视口时移除类，以便再次进入时重新触发动画
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px 0px -5% 0px',
+            threshold: 0.1
+        });
+
+        scrollAnimateElements.forEach(el => {
+            animateObserver.observe(el);
+        });
+    } else {
+        // 降级处理：不支持 IntersectionObserver 时直接显示
+        scrollAnimateElements.forEach(el => {
+            el.classList.add('is-visible');
+        });
+    }
+
+    // 为 Section 内容添加入场动画类（延迟执行以确保内容加载完成）
+    setTimeout(() => {
+        const sections = document.querySelectorAll('section .main-body');
+        sections.forEach((section, index) => {
+            section.classList.add('scroll-animate');
+            section.style.transitionDelay = `${index * 0.1}s`;
+
+            // 将新增的元素加入观察器
+            if (animateObserver) {
+                animateObserver.observe(section);
+            } else {
+                // 降级处理
+                section.classList.add('is-visible');
+            }
+        });
+
+        // 首屏内容立即显示（#home section）
+        const homeSection = document.querySelector('#home .main-body');
+        if (homeSection) {
+            homeSection.classList.add('is-visible');
+        }
+    }, 100);
+
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
     if (mainNav) {
@@ -220,17 +405,31 @@ window.addEventListener('DOMContentLoaded', event => {
         const tocNav = document.getElementById('toc-nav');
         if (!tocNav) return;
 
-        const headings = document.querySelectorAll('#experience-md h3, #experience-md h4');
+        // 只选择有 ID 的标题（跳过没有 ID 的中文版本标题）
+        const headings = Array.from(document.querySelectorAll('#experience-md h3')).filter(h => h.id);
         const tocLinks = tocNav.querySelectorAll('a');
 
-        let currentHeading = null;
+        if (headings.length === 0) return;
 
+        let currentHeading = null;
+        const windowHeight = window.innerHeight;
+
+        // 找到当前可见的标题（使用视口40%作为阈值）
         headings.forEach(heading => {
             const rect = heading.getBoundingClientRect();
-            if (rect.top <= 100) {
+            if (rect.top <= windowHeight * 0.4) {
                 currentHeading = heading.id;
             }
         });
+
+        // 如果没有找到，默认高亮第一个（如果在视口内）
+        if (!currentHeading && headings.length > 0) {
+            const firstHeading = headings[0];
+            const rect = firstHeading.getBoundingClientRect();
+            if (rect.top <= windowHeight) {
+                currentHeading = firstHeading.id;
+            }
+        }
 
         tocLinks.forEach(link => {
             link.classList.remove('active');

@@ -1,6 +1,7 @@
 <!-- lang:en -->
 
 [![Passionate0424](https://img.shields.io/badge/Passionate0424-github-blue?logo=github)](https://github.com/Passionate0424)
+[![CSDN Blog](https://img.shields.io/badge/CSDN-Blog-fc5531?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4eiIvPjwvc3ZnPg==)](https://blog.csdn.net/qq_60796105?type=blog)
 
 I'm currently pursuing a bachelor's degree in Integrated Circuits at the School of Integrated Circuits, Nanjing University, Nanjing, China.
 
@@ -20,6 +21,7 @@ FPGA-based Image Processing, AI Accelerator Design, VLSI Design, Embedded System
 <!-- lang:zh -->
 
 [![Passionate0424](https://img.shields.io/badge/Passionate0424-github-blue?logo=github)](https://github.com/Passionate0424)
+[![CSDN博客](https://img.shields.io/badge/CSDN-博客-fc5531?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4eiIvPjwvc3ZnPg==)](https://blog.csdn.net/qq_60796105?type=blog)
 
 我目前正在南京大学集成电路学院攻读集成电路学士学位。
 
