@@ -27,7 +27,7 @@
 - 在 Linux 端 (SG2002) 部署 **YOLOv5** 与 **YOLOv8-pose** 模型，实现手部动作捕捉与人体姿态识别，准确率满足实时交互需求。
 - 设计 **PID 闭环控制算法** 结合 **卡尔曼滤波** 处理视觉坐标数据，驱动二维舵机云台实现"光随书动"的高精度自动追踪。
 - 集成 **Deepseek 大模型** API 实现自然语言环境评估建议，并基于 **ThingsPanel** 物联网平台与 **RTMP/SRS** 流媒体服务，实现了数据的远程 MQTT 上云与视频流实时监控。
-- **项目开源仓库**：`https://github.com/Passionate0424/PSoC6_Lamp`
+- **项目开源仓库**：<code>https://github.com/Passionate0424/PSoC6_Lamp</code>
 
 ---
 
