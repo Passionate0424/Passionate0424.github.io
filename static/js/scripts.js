@@ -222,7 +222,13 @@ window.addEventListener('DOMContentLoaded', event => {
             const yml = jsyaml.load(text);
             Object.keys(yml).forEach(key => {
                 try {
-                    document.getElementById(key).innerHTML = yml[key];
+                    const element = document.getElementById(key);
+                    if (key === 'top-section-bg-text') {
+                        // 应用打字机效果
+                        typeWriter(element, yml[key]);
+                    } else {
+                        element.innerHTML = yml[key];
+                    }
                 } catch {
                     console.log("Unknown id and value: " + key + "," + yml[key].toString())
                 }
