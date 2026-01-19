@@ -349,6 +349,10 @@ window.addEventListener('DOMContentLoaded', event => {
 
         // 找到当前语言下可见的 h3 标题
         const allH3 = experienceContent.querySelectorAll('h3');
+
+        // 修复bug: 生成由于切换语言导致的ID冲突
+        // 清除所有 h3 的 id，防止隐藏的中文标题抢占 id 导致英文模式跳转失败
+        allH3.forEach(h => h.removeAttribute('id'));
         const headings = Array.from(allH3).filter(heading => {
             // 检查标题是否在可见的语言块中
             const parentLangBlock = heading.closest('.lang-zh, .lang-en');
