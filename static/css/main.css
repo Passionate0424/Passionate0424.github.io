@@ -1383,3 +1383,210 @@ html {
     background: rgba(30, 30, 50, 0.6);
     border-color: rgba(255, 255, 255, 0.1);
 }
+
+
+/* ==========================================
+   移动端响应式修复
+   ========================================== */
+
+/* 1. 防止页面横向溢出 */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* 2. 表格移动端横向滚动 */
+@media screen and (max-width: 768px) {
+    .main-body table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 0.9rem;
+    }
+
+    .main-body table thead,
+    .main-body table tbody,
+    .main-body table tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    /* 表格单元格文字换行 */
+    .main-body th,
+    .main-body td {
+        padding: 10px 8px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* 宽表格强制横向滚动 */
+    .main-body table {
+        min-width: 100%;
+    }
+}
+
+/* 3. 打字机效果移动端优化 */
+@media screen and (max-width: 576px) {
+    .typewriter {
+        white-space: normal;
+        word-wrap: break-word;
+        border-right: none;
+        animation: none;
+        font-size: calc(1.2rem + 2vw);
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    .top-section h2 {
+        font-size: calc(1.2rem + 2.5vw);
+        padding: 0 1rem;
+    }
+
+    .top-section {
+        height: auto;
+        min-height: 15rem;
+        padding: 6rem 0 4rem;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* 4. 头像移动端优化 */
+@media screen and (max-width: 576px) {
+    #avatar {
+        position: relative !important;
+        top: auto !important;
+        float: none !important;
+        height: auto !important;
+        display: block;
+        text-align: center;
+        margin: -60px auto 20px auto;
+        max-width: 100%;
+    }
+
+    #avatar img {
+        height: 120px;
+        width: 120px;
+        object-fit: cover;
+        display: inline-block;
+    }
+}
+
+/* 5. 回到顶部和主题切换按钮移动端位置 */
+@media screen and (max-width: 576px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .theme-toggle {
+        bottom: 75px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* 6. Section padding 移动端优化 */
+@media screen and (max-width: 576px) {
+    section {
+        padding: 2rem 0;
+    }
+
+    section header h2 {
+        font-size: 1.6rem;
+        line-height: 2.5rem;
+    }
+
+    section .main-body {
+        font-size: 1.1rem;
+        line-height: 2rem;
+    }
+}
+
+/* 7. 代码块移动端优化 */
+@media screen and (max-width: 576px) {
+    .main-body code {
+        font-size: 0.8em;
+        padding: 2px 6px;
+        word-break: break-all;
+    }
+
+    .main-body pre {
+        padding: 12px;
+        font-size: 0.85em;
+    }
+}
+
+/* 8. Footer 移动端优化 */
+@media screen and (max-width: 576px) {
+    .bg-bottom {
+        margin-top: 40px;
+    }
+
+    .bg-bottom::before {
+        top: -30px;
+        height: 40px;
+    }
+}
+
+/* 9. TOC目录移动端优化 */
+@media screen and (max-width: 576px) {
+    .toc-sidebar {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .toc-title {
+        font-size: 1rem;
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+    }
+
+    #toc-nav a {
+        font-size: 0.85rem;
+        padding: 8px 10px;
+    }
+}
+
+/* 10. 邮箱链接移动端换行 */
+@media screen and (max-width: 576px) {
+    .main-body p code {
+        display: inline-block;
+        margin: 4px 0;
+    }
+}
+
+/* 11. 长链接和长文本换行处理 */
+.main-body a {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+@media screen and (max-width: 768px) {
+
+    /* 所有文本元素允许换行 */
+    .main-body,
+    .main-body * {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* 长链接强制换行 */
+    .main-body a {
+        word-break: break-all;
+        max-width: 100%;
+    }
+
+    /* 段落内容不溢出 */
+    .main-body p {
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+}
